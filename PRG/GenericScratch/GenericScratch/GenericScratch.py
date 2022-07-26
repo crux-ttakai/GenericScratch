@@ -7,11 +7,12 @@ import tkinter
 import tkinter.font
 import InternWork
 
+
 # ボタンクリック関数
 def btn_click():
     # InternWork.py ファイルでスプライトを動かす
     # 引数に🏁ボタン、キャンバス、スプライトを渡す
-    InternWork.StartWork(Button,canvas,showSpriteImg)
+    InternWork.StartWork(root,Button,canvas,showSpriteImg,spriteImg)
 
 # スプライトとして使用する猫の画像
 spriteImg = "IMAGE\catSprite.png"
