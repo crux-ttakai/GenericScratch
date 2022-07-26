@@ -66,8 +66,6 @@ class PropertyClass:
         # スプライトをX軸方向に100動かす
         self.canvas.move(self.showSpriteImg, step, 0)
     
-    # 引数で受け取ったスプライトを表示する
-    # 引数　splite：表示するスプライト
     def AddSprite(self,splite):
         # イメージ作成
         addImg = tkinter.PhotoImage(file=splite, width=200, height=200)
@@ -75,7 +73,6 @@ class PropertyClass:
         showAddSpriteImg = self.canvas.create_image(0, 200, image=addImg, anchor=tkinter.NW)
         self.root.mainloop()
 
-    # ローカルファイルからスプライトを追加する
     def DownloadSprite(self):
         #ファイル選択ダイアログ表示
         filename = filedialog.askopenfilename()
@@ -83,22 +80,17 @@ class PropertyClass:
             #指定ファイルをIMAGEフォルダにコピー
             shutil.copy(filename, 'IMAGE/')
 
-    # 引数で受け取った画像を背景画像にする
-    # 引数　background：背景画像
     def SetBackground(self,background):
         #キャンバスに生成されているオブジェクトを全て削除する
-        #self.canvas.delete('all')
-
-        #画像を用意
-        background=tkinter.PhotoImage(file=background)
-        #背景画像を描画(中点x,中点y,画像)
-        self.canvas.create_image(400,300,image=background)
-        
+        self.canvas.delete('all')
         # イメージ作成
         img = tkinter.PhotoImage(file=self.spriteImg, width=200, height=200)
-        # キャンバスにイメージを表示（スプライト）
+        addImg = tkinter.PhotoImage(file=background, width=800, height=600)
+        # キャンバスにイメージを表示（背景→スプライト）
+        showBackground = self.canvas.create_image(0, 0, image=addImg, anchor=tkinter.NW)
         showSpriteImg = self.canvas.create_image(0, 0, image=img, anchor=tkinter.NW)
-        #self.root.mainloop()
+        self.showSpriteImg = showSpriteImg
+        self.root.mainloop()
 
 
 

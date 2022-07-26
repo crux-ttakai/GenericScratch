@@ -9,7 +9,6 @@ def StartWork(root,Button,canvas,showSpriteImg,spriteImg):
 # **********編集不可の終わり**********
 
     # **********インターン生は以下を編集**********
-    #pc.DownloadSprite()
-    pc.SetBackground("IMAGE\image.png")
-    pc.Walk(100)
-    pc.AddSprite("IMAGE\elephant.png")
+    root.after(100,pc.SetBackground,"IMAGE\image.png")
+    root.after(100,pc.Walk,100)
+    root.after(100,pc.AddSprite,"IMAGE\elephant.png")
