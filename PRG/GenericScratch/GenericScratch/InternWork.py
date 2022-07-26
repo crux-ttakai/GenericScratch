@@ -1,3 +1,4 @@
+
 # **********編集不可の始め**********
 import MakedMethod
 
@@ -9,3 +10,5 @@ def StartWork(root,Button,canvas,showSpriteImg,spriteImg):
 # **********編集不可の終わり**********
 
     # **********インターン生は以下を編集**********
+    pc.Turn(120)
+

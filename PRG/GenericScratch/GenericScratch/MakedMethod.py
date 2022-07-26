@@ -1,8 +1,10 @@
-﻿from pickle import FALSE
+﻿from tkinter import Image
+from PIL import Image,ImageTk
+import tkinter
+from pickle import FALSE
 import winsound
 import time
 from tkinter import messagebox
-import tkinter
 import tkinter.simpledialog
 
 class PropertyClass:
@@ -31,7 +33,7 @@ class PropertyClass:
     def button(self, value):
         if value != '':
             self.__button = value
-
+    
     @property
     def canvas(self):
         return self.__canvas
@@ -39,7 +41,7 @@ class PropertyClass:
     def canvas(self, value):
         if value != '':
             self.__canvas = value
-
+    
     @property
     def showSpriteImg(self):
         return self.__showSpriteImg
@@ -47,6 +49,14 @@ class PropertyClass:
     def showSpriteImg(self, value):
         if value != '':
             self.__showSpriteImg = value
+    
+    @property
+    def spriteImg(self):
+        return self.__spriteImg
+    @spriteImg.setter
+    def spriteImg(self, value):
+        if value != '':
+            self.__spriteImg = value
 
     @property
     def spriteImg(self):
@@ -72,11 +82,65 @@ class PropertyClass:
 
     # 引数で受け取った歩数分動く
     # 引数　step：歩数
+
+
+
+
+
     def Walk(self,step):
         # スプライトをX軸方向に100動かす
         self.canvas.move(self.showSpriteImg, step, 0)
 
-    # 引数で受け取った音声ファイルを再生する
+    def ChangeXCoord(self,ChangeCoord):
+        #スプライトをX座標方向に受け取った引数分(ChangeCoord)移動する
+        self.canvas.move(self.showSpriteImg,ChangeCoord,0)
+
+    def ChangeYCoord(self,ChangeCoord):
+        #スプライトをX座標方向に受け取った引数分(ChangeCoord)移動する
+        self.canvas.move(self.showSpriteImg,0,ChangeCoord)
+
+    def ChangeSize(self,size):
+        #画像ファイルを開く（GenericScratchファイルから持ってくる）
+        img = Image.open(self.spriteImg)
+        #サイズの拡大縮小処理
+        img_process = img.resize((size,size))
+        #PhotoImageに変換
+        img_PhotoImage = ImageTk.PhotoImage(img_process)
+        #元あった画像ファイルを削除
+        self.canvas.delete(self.showSpriteImg)
+        #拡大縮小処理した画像ファイルを表示
+        self.canvas.create_image(0,0,image=img_PhotoImage,anchor=tkinter.NW)
+        #ページの更新
+        self.root.mainloop()
+        
+    def Rebound(self):
+        #画像ファイルを開く（上メソッドと同様、引数として受け取り）
+        img = Image.open(self.spriteImg)
+        #左右反転処理
+        img_process = img.transpose(Image.FLIP_LEFT_RIGHT)
+        #PhotoImageに変換
+        img_PhotoImage = ImageTk.PhotoImage(img_process)
+        #元あった画像ファイルを削除
+        self.canvas.delete(self.showSpriteImg)
+        #左右反転処理した画像ファイルを表示
+        self.canvas.create_image(0,0,image=img_PhotoImage, anchor=tkinter.NW)
+        #ページの更新
+        self.root.mainloop()
+
+    def Turn(self,angle):
+        #画像ファイルを開く（上メソッドと同様、引数として受け取り）
+        img = Image.open(self.spriteImg)
+        #時計回りに90度回転
+        img_process = img.rotate(angle*-1)
+        #PhotoImageに変換
+        img_PhotoImage = ImageTk.PhotoImage(img_process)
+        #元あった画像ファイルを削除
+        self.canvas.delete(self.showSpriteImg)
+        #回転させた画像ファイルを表示
+        self.canvas.create_image(0,0,image=img_PhotoImage, anchor=tkinter.NW)
+        #ページの更新
+        self.root.mainloop()
+        # 引数で受け取った音声ファイルを再生する
     # 引数　music：\03_GenericScratch\PRG\GenericScratch\GenericScratch　直下のwav形式音声ファイル
     def Ring(self,music):
         winsound.PlaySound(music, winsound.SND_FILENAME)
