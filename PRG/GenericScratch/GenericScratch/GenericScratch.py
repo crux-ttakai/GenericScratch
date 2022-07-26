@@ -11,7 +11,7 @@ import InternWork
 def btn_click():
     # InternWork.py ファイルでスプライトを動かす
     # 引数に🏁ボタン、キャンバス、スプライトを渡す
-    InternWork.StartWork(Button,canvas,showSpriteImg)
+    InternWork.StartWork(root,Button,canvas,showSpriteImg,spriteImg)
 
 # スプライトとして使用する猫の画像
 spriteImg = "IMAGE\catSprite.png"
@@ -46,6 +46,6 @@ canvas.place(x=-2, y=46)
 # イメージ作成
 img = tkinter.PhotoImage(file=spriteImg, width=200, height=200)
 # キャンバスにイメージを表示
-showSpriteImg = canvas.create_image(0, 0, image=img, anchor=tkinter.NW)
+showSpriteImg = canvas.create_image(0, 0, image=img, anchor=tkinter.NW, tags='sprite')
 
 root.mainloop()
