@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="GenericScratch.py" />
     <Compile Include="InternWork.py" />
+    <Compile Include="MakedMethod.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
