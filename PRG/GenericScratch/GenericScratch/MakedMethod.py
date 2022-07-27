@@ -82,11 +82,6 @@ class PropertyClass:
 
     # 引数で受け取った歩数分動く
     # 引数　step：歩数
-
-
-
-
-
     def Walk(self,step):
         # スプライトをX軸方向に100動かす
         self.canvas.move(self.showSpriteImg, step, 0)
@@ -181,3 +176,17 @@ class PropertyClass:
         tmpFlgMessage = self.flgMessage
         self.flgMessage = False
         return tmpFlgMessage
+
+    # スプライトのコスチュームを引数で受け取ったコスチュームに変更する(画像の置き換え)
+    # 引数　costumeType：コスチュームの画像
+    def ChangeCostume(self,costumeType):
+        # 変更後の画像を生成
+        #キャンバスに生成されているオブジェクトを全て削除する
+        self.spriteImg = costumeType
+        img = tkinter.PhotoImage(file=self.spriteImg, width=200, height=200)
+        # キャンバスにイメージを表示
+        points = self.canvas.coords(self.showSpriteImg)
+        pointX=points[0]
+        pointY=points[1]
+        self.showSpriteImg = self.canvas.create_image(pointX, pointY, image=img, anchor=tkinter.NW)
+        self.root.mainloop()

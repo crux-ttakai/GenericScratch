@@ -10,5 +10,5 @@ def StartWork(root,Button,canvas,showSpriteImg,spriteImg):
 # **********編集不可の終わり**********
 
     # **********インターン生は以下を編集**********
-    pc.Turn(120)
+    root.after(100,pc.Walk,100)
 
