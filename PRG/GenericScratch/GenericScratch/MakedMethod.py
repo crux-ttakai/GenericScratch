@@ -1,4 +1,5 @@
-﻿from tkinter import Image
+﻿from telnetlib import EL
+from tkinter import Image
 from PIL import Image,ImageTk
 import tkinter
 from pickle import FALSE
@@ -9,13 +10,16 @@ import tkinter.simpledialog
 
 class PropertyClass:
     # インスタンス生成時にプロパティに🏁ボタン、キャンバス、スプライトを設定
-    def __init__(self,root,button,canvas,showSpriteImg,spriteImg):
+    def __init__(self,root,button,canvas,showSpriteImg,spriteImg,windowWidth,windowHeight,spriteWidth,spriteHeight):
         self.root = root
         self.button = button
         self.canvas = canvas
         self.showSpriteImg = showSpriteImg
         self.spriteImg = spriteImg
-        self.flgMessage = False
+        self.windowWidth = windowWidth
+        self.windowHeight = windowHeight
+        self.spriteWidth = spriteWidth
+        self.spriteHeight = spriteHeight
     
     # プロパティ
     @property
@@ -73,6 +77,38 @@ class PropertyClass:
     def flgMessage(self, value):
         if value != '':
             self.__flgMessage = value
+
+    @property
+    def windowWidth(self):
+        return self.__windowWidth
+    @windowWidth.setter
+    def windowWidth(self, value):
+        if value != '':
+            self.__windowWidth = value
+
+    @property
+    def windowHeight(self):
+        return self.__windowHeight
+    @windowHeight.setter
+    def windowHeight(self, value):
+        if value != '':
+            self.__windowHeight = value
+
+    @property
+    def spriteWidth(self):
+        return self.__spriteWidth
+    @spriteWidth.setter
+    def spriteWidth(self, value):
+        if value != '':
+            self.__spriteWidth = value
+
+    @property
+    def spriteHeight(self):
+        return self.__spriteHeight
+    @spriteHeight.setter
+    def spriteHeight(self, value):
+        if value != '':
+            self.__spriteHeight = value
 
     # **********以下、作成メソッド**********
     # 各パーツは以下の書き方で参照
@@ -171,7 +207,7 @@ class PropertyClass:
         self.flgMessage = True
 
     # 呼び出されたらtrueをかえす
-    # 戻り値：
+    # 戻り値　tmpFlgMessage：True/False
     def ReceiveMessage(self):
         tmpFlgMessage = self.flgMessage
         self.flgMessage = False
@@ -184,9 +220,21 @@ class PropertyClass:
         #キャンバスに生成されているオブジェクトを全て削除する
         self.spriteImg = costumeType
         img = tkinter.PhotoImage(file=self.spriteImg, width=200, height=200)
-        # キャンバスにイメージを表示
         points = self.canvas.coords(self.showSpriteImg)
         pointX=points[0]
         pointY=points[1]
-        self.showSpriteImg = self.canvas.create_image(pointX, pointY, image=img, anchor=tkinter.NW)
+        # キャンバスにイメージを表示
+        self.showSpriteImg = self.canvas.create_image(pointX, pointY, image=img, anchor=tkinter.NW, tags="sprite")
         self.root.mainloop()
+
+    # 画面端に到達したかを判定
+    # 戻り値：True/False
+    def TouchEdge(self):
+        points = self.canvas.coords(self.showSpriteImg)
+        pointX=points[0]
+        pointY=points[1]
+        if 0 < pointX < self.windowWidth - self.spriteWidth or 0 < pointY < self.windowHeight - self.spriteHeight:
+            return False
+        else:
+            return True
+

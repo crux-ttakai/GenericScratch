@@ -12,16 +12,31 @@ import InternWork
 def btn_click():
     # InternWork.py ファイルでスプライトを動かす
     # 引数に🏁ボタン、キャンバス、スプライトを渡す
-    InternWork.StartWork(root,Button,canvas,showSpriteImg,spriteImg)
+    InternWork.StartWork(root,Button,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
+
+# スプライトクリック関数
+def pressedSprite(event):
+    # InternWork.py ファイルでスプライトを動かす
+    # 引数に🏁ボタン、キャンバス、スプライトを渡す
+    InternWork.StartWorkSprite(root,Button,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
+    print("aaa")
 
 # スプライトとして使用する猫の画像
 spriteImg = "IMAGE\catSprite.png"
+# 画面幅
+WindowWidth = 800
+# 画面高さ
+WindowHeight = 600
+# スプライト幅
+SpriteWidth = 200
+# スプライト高さ
+SpriteHeight = 200
 
 root = tkinter.Tk()
 # ウィンドウのタイトル
 root.title(u"Software Title")
 # ウィンドウのサイズ
-root.geometry("800x600")
+root.geometry("{0}x{1}".format(WindowWidth, WindowHeight))
 # フォント設定
 font = tkinter.font.Font(
     root,
@@ -45,9 +60,11 @@ canvas = tkinter.Canvas(root, bg="#FFFFFF", height=554, width=800)
 canvas.place(x=-2, y=46)
 
 # イメージ作成
-img = tkinter.PhotoImage(file=spriteImg, width=200, height=200)
+img = tkinter.PhotoImage(file=spriteImg, width=SpriteWidth, height=SpriteHeight)
 
 # キャンバスにイメージを表示
-showSpriteImg = canvas.create_image(0, 0, image=img, anchor=tkinter.NW)
+showSpriteImg = canvas.create_image(0, 0, image=img, anchor=tkinter.NW, tags="sprite")
+# スプライトがクリックされたとき
+canvas.tag_bind("sprite", "<ButtonPress-1>", pressedSprite)
 
 root.mainloop()
