@@ -120,12 +120,6 @@ class PropertyClass:
     # キャンバス：self.canvas
     # スプライト：self.showSpriteImg
 
-    # 引数で受け取った歩数分動く
-    # 引数　step：歩数
-    def Walk(self,step):
-        # スプライトをX軸方向に100動かす
-        self.canvas.move(self.showSpriteImg, step, 0)
-
     def ChangeXCoord(self,ChangeCoord):
         #スプライトをX座標方向に受け取った引数分(ChangeCoord)移動する
         self.canvas.move(self.showSpriteImg,ChangeCoord,0)
@@ -176,6 +170,34 @@ class PropertyClass:
         #ページの更新
         self.root.mainloop()
         # 引数で受け取った音声ファイルを再生する
+
+        
+    def AddSprite(self,splite):
+        # イメージ作成
+        addImg = tkinter.PhotoImage(file=splite, width=200, height=200)
+        # キャンバスにイメージを表示
+        showAddSpriteImg = self.canvas.create_image(0, 200, image=addImg, anchor=tkinter.NW)
+        self.root.mainloop()
+
+    def DownloadSprite(self):
+        #ファイル選択ダイアログ表示
+        filename = filedialog.askopenfilename()
+        if filename !="":
+            #指定ファイルをIMAGEフォルダにコピー
+            shutil.copy(filename, 'IMAGE/')
+
+    def SetBackground(self,background):
+        #キャンバスに生成されているオブジェクトを全て削除する
+        self.canvas.delete('all')
+        # イメージ作成
+        img = tkinter.PhotoImage(file=self.spriteImg, width=200, height=200)
+        addImg = tkinter.PhotoImage(file=background, width=800, height=600)
+        # キャンバスにイメージを表示（背景→スプライト）
+        showBackground = self.canvas.create_image(0, 0, image=addImg, anchor=tkinter.NW)
+        showSpriteImg = self.canvas.create_image(0, 0, image=img, anchor=tkinter.NW)
+        self.showSpriteImg = showSpriteImg
+        self.root.mainloop()
+
     # 引数　music：\03_GenericScratch\PRG\GenericScratch\GenericScratch　直下のwav形式音声ファイル
     def Ring(self,music):
         winsound.PlaySound(music, winsound.SND_FILENAME)
