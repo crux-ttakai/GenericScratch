@@ -123,6 +123,7 @@ class PropertyClass:
     # 🏁ボタン：self.button
     # キャンバス：self.canvas
     # スプライト：self.showSpriteImg
+    # ……
 
     def ChangeXCoord(self,ChangeCoord):
         #スプライトをX座標方向に受け取った引数分(ChangeCoord)移動する
@@ -184,11 +185,11 @@ class PropertyClass:
         # 引数で受け取った音声ファイルを再生する
 
         
-    def AddSprite(self,splite):
+    def AddSprite(self,splite,spliteName):
         # イメージ作成
         addImg = tkinter.PhotoImage(file=splite, width=200, height=200)
         # キャンバスにイメージを表示
-        showAddSpriteImg = self.canvas.create_image(0, 200, image=addImg, anchor=tkinter.NW)
+        showAddSpriteImg = self.canvas.create_image(0, 0, image=addImg, anchor=tkinter.NW, tags=spliteName)
         self.root.mainloop()
 
     def DownloadSprite(self):
@@ -267,8 +268,8 @@ class PropertyClass:
 
     # 画面端に到達したかを判定
     # 戻り値：True/False
-    def TouchEdge(self):
-        points = self.canvas.coords(self.showSpriteImg)
+    def TouchEdge(self,spritename):
+        points = self.canvas.coords(spritename)
         pointX=points[0]
         pointY=points[1]
         if 0 < pointX < self.windowWidth - self.spriteWidth or 0 < pointY < self.windowHeight - self.spriteHeight:
@@ -291,3 +292,36 @@ class PropertyClass:
 
     def ChangePenSize(self,penSize):
         self.brushSize = penSize
+
+    # スプライト同士が重なったかを判定
+    # 引数　spritename1：スプライトのタグ名
+    # 引数　spritename2：スプライトのタグ名
+    # 戻り値：True/False
+    def TouchSprite(self,spritename1,spritename2):
+        points1 = self.canvas.coords(spritename1)
+        point1X=points1[0]
+        point1Y=points1[1]
+        points2 = self.canvas.coords(spritename2)
+        point2X=points2[0]
+        point2Y=points2[1]
+        flgX = True
+        flgY = True
+
+        if point1X < point2X:
+            if point1X + 200 < point2X:
+                flgX = False
+        else:
+            if point2X < point1X - 200:
+                flgX = False
+
+        if point1Y < point2Y:
+            if point1Y + 200 < point2Y:
+                flgY = False
+        else:
+            if point2Y < point1Y - 200 :
+                flgY = False
+
+        if flgX and flgY:
+            return True
+        else:
+            return False

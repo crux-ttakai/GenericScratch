@@ -63,8 +63,8 @@ canvas.place(x=-2, y=46)
 img = tkinter.PhotoImage(file=spriteImg, width=SpriteWidth, height=SpriteHeight)
 
 # キャンバスにイメージを表示
-showSpriteImg = canvas.create_image(0, 0, image=img, anchor=tkinter.NW, tags="sprite")
+showSpriteImg = canvas.create_image(0, 0, image=img, anchor=tkinter.NW, tags="cat")
 # スプライトがクリックされたとき
-canvas.tag_bind("sprite", "<ButtonPress-1>", pressedSprite)
+canvas.tag_bind("cat", "<ButtonPress-1>", pressedSprite)
 
 root.mainloop()
