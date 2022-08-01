@@ -110,6 +110,10 @@ class PropertyClass:
         if value != '':
             self.__spriteHeight = value
 
+    # グローバル変数
+    # ペンが下りているか
+    flgPen = False
+
     # **********以下、作成メソッド**********
     # 各パーツは以下の書き方で参照
     # 🏁ボタン：self.button
@@ -238,3 +242,10 @@ class PropertyClass:
         else:
             return True
 
+    # 現在地の座標をペン描画の始点に設定する
+    def DawnPen(self):
+        self.flgPen = True
+
+    # 現在地の座標をペン描画の終点に設定する
+    def UpPen(self):
+        self.flgPen = False
