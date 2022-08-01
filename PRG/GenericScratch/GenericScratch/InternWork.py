@@ -23,7 +23,14 @@ def StartWorkSprite(root,Button,canvas,showSpriteImg,spriteImg,WindowWidth,Windo
 # **********編集不可の終わり**********
 
     # **********インターン生は以下を編集の始め**********
+    pc.DownPen()
+    pc.ChangePenColor("Blue")
+    pc.ChangePenSize(10)
     pc.ChangeXCoord(100)
+    pc.ChangePenColor("Red")
+    pc.ChangePenSize(2)
+    pc.ChangeYCoord(100)
+    pc.UpPen()
     if pc.TouchEdge():
         print("kkkkkkkk")
     else:

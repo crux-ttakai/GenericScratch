@@ -111,8 +111,12 @@ class PropertyClass:
             self.__spriteHeight = value
 
     # グローバル変数
-    # ペンが下りているか
-    flgPen = False
+    # ペン描画の始点座標
+    lnStartPt = []
+    # ペンの色
+    brushColor = "Black"
+    # ペンの太さ
+    brushSize = 5
 
     # **********以下、作成メソッド**********
     # 各パーツは以下の書き方で参照
@@ -123,10 +127,18 @@ class PropertyClass:
     def ChangeXCoord(self,ChangeCoord):
         #スプライトをX座標方向に受け取った引数分(ChangeCoord)移動する
         self.canvas.move(self.showSpriteImg,ChangeCoord,0)
+        #ペン描画状態の場合は、移動した分線を描画する
+        if self.lnStartPt != []:
+            self.canvas.create_line(self.lnStartPt[0],self.lnStartPt[1],self.lnStartPt[0]+ChangeCoord,self.lnStartPt[1],width=self.brushSize,fill=self.brushColor)
+            self.lnStartPt= (self.lnStartPt[0]+float(ChangeCoord),self.lnStartPt[1])
 
     def ChangeYCoord(self,ChangeCoord):
         #スプライトをX座標方向に受け取った引数分(ChangeCoord)移動する
         self.canvas.move(self.showSpriteImg,0,ChangeCoord)
+        #ペン描画状態の場合は、移動した分線を描画する
+        if self.lnStartPt != []:
+            self.canvas.create_line(self.lnStartPt[0],self.lnStartPt[1],self.lnStartPt[0],self.lnStartPt[1]+ChangeCoord,width=self.brushSize,fill=self.brushColor)
+            self.lnStartPt = (self.lnStartPt[0], self.lnStartPt[1]+float(ChangeCoord))
 
     def ChangeSize(self,size):
         #画像ファイルを開く（GenericScratchファイルから持ってくる）
@@ -265,9 +277,17 @@ class PropertyClass:
             return True
 
     # 現在地の座標をペン描画の始点に設定する
-    def DawnPen(self):
-        self.flgPen = True
+    def DownPen(self):
+        points = self.canvas.bbox(self, self.showSpriteImg)
+        self.lnStartPt = ((points[0]+points[2])/2, (points[1]+points[3])/2)
 
     # 現在地の座標をペン描画の終点に設定する
     def UpPen(self):
-        self.flgPen = False
+        self.lnStartPt = []
+
+    # ペンの色を変更する
+    def ChangePenColor(self,penColor):
+        self.brushColor = penColor
+
+    def ChangePenSize(self,penSize):
+        self.brushSize = penSize
