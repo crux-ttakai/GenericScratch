@@ -1,30 +1,30 @@
-
-# **********•ÒW•s‰Â‚Ìn‚ß**********
+ï»¿
+# **********ç·¨é›†ä¸å¯ã®å§‹ã‚**********
 import MakedMethod
 
 def StartWork(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight):
-    # ƒƒ\ƒbƒhŒQ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
+    # ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
     pc= MakedMethod.PropertyClass(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
-    # ŠJnƒ{ƒ^ƒ“‚Í‚P“x‚¾‚¯‰Ÿ‚·‚±‚Æ‚ª‚Å‚«‚é
+    # é–‹å§‹ãƒœã‚¿ãƒ³ã¯ï¼‘åº¦ã ã‘æŠ¼ã™ã“ã¨ãŒã§ãã‚‹
     Button["state"] = "disable"
-# **********•ÒW•s‰Â‚ÌI‚í‚è**********
+# **********ç·¨é›†ä¸å¯ã®çµ‚ã‚ã‚Š**********
 
-    # **********ƒCƒ“ƒ^[ƒ“¶‚ÍˆÈ‰º‚ğ•ÒW‚Ìn‚ß**********
+    # **********ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ³ç”Ÿã¯ä»¥ä¸‹ã‚’ç·¨é›†ã®å§‹ã‚**********
     root.after(100,pc.ChangeXCoord,100)
-    # 1•bŒã‚Éƒ^ƒCƒ}[‚ği‚ßn‚ß‚é
+    # 1ç§’å¾Œã«ã‚¿ã‚¤ãƒãƒ¼ã‚’é€²ã‚å§‹ã‚ã‚‹
     root.after(1000, pc.repeat_func)
-    # **********ƒCƒ“ƒ^[ƒ“¶‚ÍˆÈ‰º‚ğ•ÒW‚ÌI‚í‚è*******
+    # **********ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ³ç”Ÿã¯ä»¥ä¸‹ã‚’ç·¨é›†ã®çµ‚ã‚ã‚Š*******
 
 
 
 
-# **********•ÒW•s‰Â‚Ìn‚ß**********
+# **********ç·¨é›†ä¸å¯ã®å§‹ã‚**********
 def StartWorkSprite(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight):
-    # ƒƒ\ƒbƒhŒQ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
+    # ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
     pc= MakedMethod.PropertyClass(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
-# **********•ÒW•s‰Â‚ÌI‚í‚è**********
+# **********ç·¨é›†ä¸å¯ã®çµ‚ã‚ã‚Š**********
 
-    # **********ƒCƒ“ƒ^[ƒ“¶‚ÍˆÈ‰º‚ğ•ÒW‚Ìn‚ß**********
+    # **********ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ³ç”Ÿã¯ä»¥ä¸‹ã‚’ç·¨é›†ã®å§‹ã‚**********
     pc.DownPen()
     pc.ChangePenColor("Blue")
     pc.ChangePenSize(10)
@@ -37,5 +37,5 @@ def StartWorkSprite(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth
         print("kkkkkkkk")
     else:
         print("bbbbbbbb")
-    # **********ƒCƒ“ƒ^[ƒ“¶‚ÍˆÈ‰º‚ğ•ÒW‚ÌI‚í‚è*******
+    # **********ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ³ç”Ÿã¯ä»¥ä¸‹ã‚’ç·¨é›†ã®çµ‚ã‚ã‚Š*******
 
