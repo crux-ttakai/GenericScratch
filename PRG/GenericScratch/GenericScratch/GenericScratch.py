@@ -12,13 +12,13 @@ import InternWork
 def btn_click():
     # InternWork.py ファイルでスプライトを動かす
     # 引数に🏁ボタン、キャンバス、スプライトを渡す
-    InternWork.StartWork(root,Button,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
+    InternWork.StartWork(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
 
 # スプライトクリック関数
 def pressedSprite(event):
     # InternWork.py ファイルでスプライトを動かす
     # 引数に🏁ボタン、キャンバス、スプライトを渡す
-    InternWork.StartWorkSprite(root,Button,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
+    InternWork.StartWorkSprite(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth,WindowHeight,SpriteWidth,SpriteHeight)
     print("aaa")
 
 # スプライトとして使用する猫の画像
@@ -42,14 +42,6 @@ font = tkinter.font.Font(
     root,
     size = 20)
 
-# ラベルを表示
-#Static1 = tkinter.Label(text=u'test')
-#Static1.pack()
-
-# テキストボックスを表示
-#EditBox = tkinter.Entry()
-#EditBox.pack()
-
 # ボタンを表示
 Button = tkinter.Button(text=u'🏁',font = font,command=btn_click)
 Button.place(x=0,y=0)
@@ -66,5 +58,15 @@ img = tkinter.PhotoImage(file=spriteImg, width=SpriteWidth, height=SpriteHeight)
 showSpriteImg = canvas.create_image(0, 0, image=img, anchor=tkinter.NW, tags="cat")
 # スプライトがクリックされたとき
 canvas.tag_bind("cat", "<ButtonPress-1>", pressedSprite)
+
+# ラベルウィジェット作成
+label = tkinter.Label(
+    root,
+    width=15,
+    height=1,
+    text="0",
+    font=("", 30)
+)
+label.pack()
 
 root.mainloop()

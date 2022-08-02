@@ -10,9 +10,10 @@ import tkinter.simpledialog
 
 class PropertyClass:
     # インスタンス生成時にプロパティに🏁ボタン、キャンバス、スプライトを設定
-    def __init__(self,root,button,canvas,showSpriteImg,spriteImg,windowWidth,windowHeight,spriteWidth,spriteHeight):
+    def __init__(self,root,button,label,canvas,showSpriteImg,spriteImg,windowWidth,windowHeight,spriteWidth,spriteHeight):
         self.root = root
         self.button = button
+        self.label = label
         self.canvas = canvas
         self.showSpriteImg = showSpriteImg
         self.spriteImg = spriteImg
@@ -20,6 +21,7 @@ class PropertyClass:
         self.windowHeight = windowHeight
         self.spriteWidth = spriteWidth
         self.spriteHeight = spriteHeight
+        self.count = 0
     
     # プロパティ
     @property
@@ -37,6 +39,14 @@ class PropertyClass:
     def button(self, value):
         if value != '':
             self.__button = value
+
+    @property
+    def label(self):
+        return self.__label
+    @label.setter
+    def label(self, value):
+        if value != '':
+            self.__label = value
     
     @property
     def canvas(self):
@@ -109,6 +119,14 @@ class PropertyClass:
     def spriteHeight(self, value):
         if value != '':
             self.__spriteHeight = value
+
+    @property
+    def count(self):
+        return self.__count
+    @count.setter
+    def count(self, value):
+        if value != '':
+            self.__count = value
 
     # グローバル変数
     # ペン描画の始点座標
@@ -325,3 +343,13 @@ class PropertyClass:
             return True
         else:
             return False
+
+    # 定期的に実行する関数
+    def repeat_func(self):
+        # 定期的に行いたい処理
+        self.count += 1
+        self.label.config(
+            text=str(self.count)
+        )
+        # 再度repeat_funcが実行されるようにafter実行
+        self.root.after(1000, self.repeat_func)
