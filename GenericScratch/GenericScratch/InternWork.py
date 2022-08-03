@@ -12,7 +12,7 @@ def StartWork(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth,Windo
     # **********インターン生は以下を編集の始め**********
     root.after(100,pc.ChangeXCoord,100)
     # 1秒後にタイマーを進め始める
-    root.after(1000, pc.repeat_func)
+    root.after(1000, pc.TimerCount)
     # **********インターン生は以下を編集の終わり*******
 
 

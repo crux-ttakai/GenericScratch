@@ -345,11 +345,11 @@ class PropertyClass:
             return False
 
     # 定期的に実行する関数
-    def repeat_func(self):
+    def TimerCount(self):
         # 定期的に行いたい処理
         self.count += 1
         self.label.config(
             text=str(self.count)
         )
-        # 再度repeat_funcが実行されるようにafter実行
-        self.root.after(1000, self.repeat_func)
+        # 再度TimerCountが実行されるようにafter実行
+        self.root.after(1000, self.TimerCount)
