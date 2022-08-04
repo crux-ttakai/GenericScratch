@@ -33,7 +33,7 @@ def StartWorkSprite(root,Button,label,canvas,showSpriteImg,spriteImg,WindowWidth
     pc.ChangePenSize(2)
     pc.ChangeYCoord(100)
     pc.UpPen()
-    if pc.TouchEdge():
+    if pc.TouchEdge(showSpriteImg):
         print("kkkkkkkk")
     else:
         print("bbbbbbbb")
