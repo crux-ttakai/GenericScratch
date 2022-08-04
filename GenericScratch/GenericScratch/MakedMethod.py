@@ -203,11 +203,11 @@ class PropertyClass:
         # 引数で受け取った音声ファイルを再生する
 
         
-    def AddSprite(self,splite,spliteName):
+    def AddSprite(self,splite,spliteName,pointX,pointY,imgWidth,imgHeight):
         # イメージ作成
-        addImg = tkinter.PhotoImage(file=splite, width=200, height=200)
+        addImg = tkinter.PhotoImage(file=splite, width=imgWidth, height=imgHeight)
         # キャンバスにイメージを表示
-        showAddSpriteImg = self.canvas.create_image(0, 0, image=addImg, anchor=tkinter.NW, tags=spliteName)
+        showAddSpriteImg = self.canvas.create_image(pointX, pointY, image=addImg, anchor=tkinter.NW, tags=spliteName)
         self.root.mainloop()
 
     def DownloadSprite(self):
