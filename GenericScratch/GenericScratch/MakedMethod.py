@@ -203,7 +203,7 @@ class PropertyClass:
         # 引数で受け取った音声ファイルを再生する
 
         
-    def AddSprite(self,splite,spliteName,pointX,pointY,imgWidth,imgHeight):
+    def AddSprite(self,splite,spliteName,pointX,pointY,imgWidth,imgHeight):                 # 使用する際はafterメソッドとともに使用すること
         # イメージ作成
         addImg = tkinter.PhotoImage(file=splite, width=imgWidth, height=imgHeight)
         # キャンバスにイメージを表示
