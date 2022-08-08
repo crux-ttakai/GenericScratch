@@ -277,11 +277,12 @@ class PropertyClass:
         #キャンバスに生成されているオブジェクトを全て削除する
         self.spriteImg = costumeType
         img = tkinter.PhotoImage(file=self.spriteImg, width=200, height=200)
-        points = self.canvas.coords(self.showSpriteImg)
+        points = self.canvas.coords("cat")
         pointX=points[0]
         pointY=points[1]
+        self.canvas.delete('all')
         # キャンバスにイメージを表示
-        self.showSpriteImg = self.canvas.create_image(pointX, pointY, image=img, anchor=tkinter.NW, tags="sprite")
+        self.showSpriteImg = self.canvas.create_image(pointX, pointY, image=img, anchor=tkinter.NW, tags="cat")
         self.root.mainloop()
 
     # 画面端に到達したかを判定
